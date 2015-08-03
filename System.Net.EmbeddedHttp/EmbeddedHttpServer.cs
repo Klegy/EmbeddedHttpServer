@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace System.Net.EmbeddedHttp
 {
@@ -204,6 +205,21 @@ namespace System.Net.EmbeddedHttp
         }
 
         /// <summary>
+        /// Hook matcher function
+        /// </summary>
+        /// <param name="hooks">Hooks to text. Can contain regular expressions</param>
+        /// <param name="text">text to match</param>
+        /// <returns>ture if text matches to any of the hooks, false if text doesn't mach any hooks</returns>
+        private bool MathesHook(string[] hooks, string text)
+        {
+            foreach (var i in hooks)
+            {
+                if (Regex.IsMatch(text, i)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Starts the server
         /// </summary>
         public void Start()
@@ -215,6 +231,7 @@ namespace System.Net.EmbeddedHttp
             ProcessAppPackages();
             _listener.Start();
             _log.Info("Server started.", "Prefix", _listener.Prefixes.First());
+            //threaded serve function
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 try
@@ -228,7 +245,9 @@ namespace System.Net.EmbeddedHttp
                             {
                                 var file = GetFileName(ctx.Request.RawUrl);
                                 if (string.IsNullOrEmpty(file)) file = "index.html";
-                                var handler = (from i in _handlers where i.Hooks.Contains(file) select i).FirstOrDefault();
+
+
+                                var handler = (from i in _handlers where MathesHook(i.Hooks, file) select i).FirstOrDefault();
 
                                 if (handler != null)
                                 {
@@ -273,7 +292,7 @@ namespace System.Net.EmbeddedHttp
                             catch (Exception ex)
                             {
                                 _log.Error("Error handling request", ctx.Request.RawUrl, ex.Message);
-                                HandleError(ctx, 501, ex);
+                                HandleError(ctx, 500, ex);
                             }
                             finally
                             {
