@@ -33,6 +33,8 @@ namespace System.Net.EmbeddedHttp
             _cache = new Dictionary<string, byte[]>();
             AppPackages = new List<string>();
             CacheLimit = 10 * 1024 * 1024; //initial cache limit is 10Mb
+            CustomMimeData = new Dictionary<string, string>();
+            CustomMimeData.Add(".svg", "image/svg+xml");
         }
 
         private static string FormatPath(string path)
@@ -167,6 +169,15 @@ namespace System.Net.EmbeddedHttp
             private set;
         }
 
+        /// <summary>
+        /// Custom mime type database. Key is extension. Value is mime type
+        /// </summary>
+        public Dictionary<string, string> CustomMimeData
+        {
+            get;
+            private set;
+        }
+
 
         /// <summary>
         /// Gets the filename from an url request
@@ -176,8 +187,20 @@ namespace System.Net.EmbeddedHttp
         public static string GetFileName(string rawURL)
         {
             var noquery = Regex.Replace(rawURL, @"\?.+", "");
-            return noquery.Substring(1, noquery.Length - 1);
+            if (noquery.StartsWith("/"))
+                return noquery.Substring(1, noquery.Length - 1);
+            else
+                return noquery;
             
+        }
+
+        private string GetMime(string file)
+        {
+            var extension = System.IO.Path.GetExtension(file);
+            if (CustomMimeData.Keys.Contains(extension))
+                return CustomMimeData[extension];
+            else
+                return MimeMapping.GetMimeMapping(file);
         }
 
         /// <summary>
@@ -219,7 +242,7 @@ namespace System.Net.EmbeddedHttp
                                         byte[] data = _cache[file];
                                         ctx.Response.StatusCode = 200;
                                         ctx.Response.ContentLength64 = data.Length;
-                                        ctx.Response.ContentType = MimeMapping.GetMimeMapping(file);
+                                        ctx.Response.ContentType = GetMime(file);
                                         ctx.Response.OutputStream.Write(data, 0, data.Length);
                                         _log.Info("Handling reqest from cache", ctx.Request.RawUrl);
                                     }
@@ -275,6 +298,20 @@ namespace System.Net.EmbeddedHttp
             _listener.Close();
             _log.Info("Server stopped");
             _log.Stop();
+        }
+
+        /// <summary>
+        /// Gets a cached file contents as a bye array
+        /// </summary>
+        /// <param name="file">File to get</param>
+        /// <returns>a byte array or null, if the file is not found in the cache</returns>
+        public byte[] GetCachedFile(string file)
+        {
+            if (_cache.ContainsKey(file))
+            {
+                return _cache[file];
+            }
+            else return null;
         }
 
         public void Dispose()
