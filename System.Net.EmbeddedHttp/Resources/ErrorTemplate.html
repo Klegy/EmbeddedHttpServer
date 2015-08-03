@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Error {{number}}</title>
+    <style type="text/css">
+        body {
+            color: #333;
+            font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+            font-size: 16px;
+            word-wrap: break-word;
+            padding: 20px;
+            background: #f2f2f2;
+        }
+
+        pre {
+            font-size: 12px;
+        }
+
+        #header {
+            font-size: 72px;
+        }
+
+        #unhappy {
+            font-family: "Lucida Console", Monaco, monospace;
+            float: left;
+            padding: 20px;
+        }
+
+        #number {
+            padding: 15px;
+        }
+
+        .show {
+            display: none;
+        }
+
+        .hide:focus + .show {
+            display: inline;
+        }
+
+        .hide:focus {
+            display: none;
+        }
+
+        .tran1 {
+            -o-transition: all 1s;
+            -moz-transition: all 1s;
+            -webkit-transition: all 1s;
+        }
+
+        #secret {
+            opacity: 0;
+        }
+
+        .hide:focus ~ #secret {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="unhappy">
+            :'(
+        </div>
+        <div id="number">
+            HTTP ERROR {{number}}
+        </div>
+    </div>
+    <div id="message">Exception message: {{message}}</div>
+    <br/>
+    <div>
+        Stack trace: <a href="#" class="hide">[show]</a>
+        <a href="#" class="show">[hide]</a>
+        <div id="secret" class="tran1"><pre>{{trace}}</pre></div>
+    </div>
+    <hr />
+    <p>Error page served by: EmbeddedHTTPServer</p>
+</body>
+</html>

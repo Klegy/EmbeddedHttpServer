@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Net.EmbeddedHttp.MarkdownTemplateHandler">
+    <Position X="0.75" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAABAAAABAAAAAAgAACACAAAAAAAAAA=</HashCode>
+      <FileName>RequestHandlers\MarkDownTemplateHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.ReqestHandler">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGAAAAAAgAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>RequestHandlers\ReqestHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.TemplateHandler">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAEAAAAAABAAAABAAAAAAgAAAACAAAAAAAAAA=</HashCode>
+      <FileName>RequestHandlers\TemplateHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.EmbeddedHttpServer">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAJAKACAEIAAAEAAAAAQEAQAAAAIAAAAAAAAgA=</HashCode>
+      <FileName>EmbeddedHttpServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.ServerLog">
+    <Position X="9" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAggACAAAwAAAAAAABAgAAhAAAAAIAAAAEAAAAA=</HashCode>
+      <FileName>ServerLog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.HTTPEventArgs">
+    <Position X="11.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>HTTPEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.EventArgs">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Net.EmbeddedHttp.JqueryHandler">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RequestHandlers\JqueryHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="System.IDisposable">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="System.Net.EmbeddedHttp.EventType">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ServerLog.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="System.Net.EmbeddedHttp.GetParametersHandler">
+    <Position X="11.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HTTPEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
