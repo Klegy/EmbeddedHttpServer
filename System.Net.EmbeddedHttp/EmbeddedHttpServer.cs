@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
-using System.Text.RegularExpressions;
 
 namespace System.Net.EmbeddedHttp
 {
@@ -36,6 +35,10 @@ namespace System.Net.EmbeddedHttp
             CacheLimit = 10 * 1024 * 1024; //initial cache limit is 10Mb
             CustomMimeData = new Dictionary<string, string>();
             CustomMimeData.Add(".svg", "image/svg+xml");
+            CustomMimeData.Add(".ttf", "application/x-font-truetype");
+            CustomMimeData.Add(".eot", "application / vnd.ms - fontobject");
+            CustomMimeData.Add(".woff", "application/font-woff");
+            CustomMimeData.Add(".otf", "application/x-font-opentype");
         }
 
         private static string FormatPath(string path)
